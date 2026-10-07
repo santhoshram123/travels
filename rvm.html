@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RVM TRAVELS - Trip Details</title>
+
+    <link rel="stylesheet" href="rvm.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">RVM</div>
+
+        <div>
+            <h1>RVM TRAVELS</h1>
+            <p>Travel & wallet Management</p>
+        </div>
+    </header>
+
+
+    <form id="travelForm">
+
+        <!-- 1. DRIVER DETAILS -->
+        <section class="card">
+
+            <h2>🚗 Driver Details</h2>
+
+            <div class="form-grid">
+
+                <div class="input-box">
+                    <label>Driver Name</label>
+                    <input type="text" id="driverName"
+                           placeholder="Enter driver name" required>
+                </div>
+
+                <div class="input-box">
+                    <label>Driver Phone Number</label>
+                    <input type="tel" id="phone"
+                           placeholder="Enter phone number" required>
+                </div>
+
+                <div class="input-box">
+                    <label>Vehicle Number</label>
+                    <input type="text" id="vehicleNumber"
+                           placeholder="TN 00 AB 0000" required>
+                </div>
+
+                <div class="input-box">
+                    <label>Vehicle Type</label>
+
+                    <select id="vehicleType">
+                        <option value="">Select Vehicle</option>
+                        <option>Car</option>
+                        <option>Van</option>
+                        <option>Tempo Traveller</option>
+                        <option>Bus</option>
+                        <option>Mini Bus</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+
+                <div class="input-box">
+                    <label>Driver ID / Trip ID</label>
+                    <input type="text" id="tripId"
+                           placeholder="Enter ID">
+                </div>
+
+                <div class="input-box">
+                    <label>Start Date & Time</label>
+                    <input type="datetime-local" id="startDate">
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- 2. TRIP DETAILS -->
+        <section class="card">
+
+            <h2>📍 Trip Details</h2>
+
+            <div class="form-grid">
+
+                <div class="input-box">
+                    <label>Pickup Point</label>
+                    <input type="text" id="pickup"
+                           placeholder="Enter pickup location" required>
+                </div>
+
+                <div class="input-box">
+                    <label>Drop Point</label>
+                    <input type="text" id="drop"
+                           placeholder="Enter drop location" required>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- 3. KM DETAILS -->
+        <section class="card">
+
+            <h2>🛣️ KM Details</h2>
+
+            <div class="form-grid">
+
+                <div class="input-box">
+                    <label>Starting KM</label>
+                    <input type="number" id="startKm"
+                           placeholder="0" min="0">
+                </div>
+
+                <div class="input-box">
+                    <label>Ending KM</label>
+                    <input type="number" id="endKm"
+                           placeholder="0" min="0">
+                </div>
+
+                <div class="input-box">
+                    <label>Total KM</label>
+                    <input type="number" id="totalKm"
+                           placeholder="Automatically calculated"
+                           readonly>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- 4. MAIN PAYMENT -->
+        <section class="card">
+
+            <h2>💰 Main Payment / wallet Payment</h2>
+
+            <div class="form-grid">
+
+                <div class="input-box">
+                    <label>Rate Per KM (₹)</label>
+                    <input type="number" id="rateKm"
+                           placeholder="Example: 20" min="0">
+                </div>
+
+                <div class="input-box">
+                    <label>KM Payment (₹)</label>
+                    <input type="number" id="kmPayment"
+                           placeholder="Automatically calculated"
+                           readonly>
+                </div>
+
+                <div class="input-box">
+                    <label>Base Vehicle Payment (₹)</label>
+                    <input type="number" id="basePayment"
+                           placeholder="Enter amount" min="0">
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- 5. FASTAG -->
+        <section class="card">
+
+            <h2>🛣️ Fastag Charges</h2>
+
+            <div class="form-grid">
+
+                <div class="input-box">
+                    <label>Number of Tolls</label>
+                    <input type="number" id="tolls"
+                           placeholder="0" min="0">
+                </div>
+
+                <div class="input-box">
+                    <label>Fastag Charge (₹)</label>
+                    <input type="number" id="fastag"
+                           placeholder="Enter total Fastag amount"
+                           min="0">
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- 6. OTHER CHARGES -->
+        <section class="card">
+
+            <h2>📋 Other Charges</h2>
+
+            <div class="form-grid">
+
+                <div class="input-box">
+                    <label>Other Charges (₹)</label>
+                    <input type="number" id="otherCharges"
+                           placeholder="Enter other charges"
+                           min="0">
+                </div>
+
+                <div class="input-box">
+                    <label>Other Charges Description</label>
+                    <input type="text" id="otherDescription"
+                           placeholder="Parking / Food / Other">
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- 7. PAYMENT SUMMARY -->
+        <section class="summary">
+
+            <h2>💳 Payment Summary</h2>
+
+            <div class="summary-row">
+                <span>wallet Payment</span>
+                <strong>₹ <span id="displayVehicle">0</span></strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Fastag Charge</span>
+                <strong>₹ <span id="displayFastag">0</span></strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Other Charges</span>
+                <strong>₹ <span id="displayOther">0</span></strong>
+            </div>
+
+            <hr>
+
+            <div class="grand-total">
+                <span>GRAND TOTAL</span>
+                <strong>₹ <span id="grandTotal">0</span></strong>
+            </div>
+
+        </section>
+
+
+        <!-- BUTTONS -->
+        <div class="buttons">
+
+            <button type="button" class="calculate"
+                    onclick="calculateTotal()">
+                Calculate Total
+            </button>
+
+            <button type="submit" class="submit">
+                Submit Trip Details
+            </button>
+
+            <button type="reset" class="reset">
+                Clear
+            </button>
+
+        </div>
+
+    </form>
+
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 RVM TRAVELS | Safe Journey, Happy Journey 🚗</p>
+    </footer>
+
+</div>
+
+
+<script>
+
+function calculateTotal() {
+
+    // KM
+    let startKm =
+        Number(document.getElementById("startKm").value) || 0;
+
+    let endKm =
+        Number(document.getElementById("endKm").value) || 0;
+
+    let totalKm = endKm - startKm;
+
+    if (totalKm < 0) {
+        totalKm = 0;
+    }
+
+    document.getElementById("totalKm").value = totalKm;
+
+
+    // KM PAYMENT
+    let rateKm =
+        Number(document.getElementById("rateKm").value) || 0;
+
+    let kmPayment = totalKm * rateKm;
+
+    document.getElementById("kmPayment").value =
+        kmPayment.toFixed(2);
+
+
+    // BASE PAYMENT
+    let basePayment =
+        Number(document.getElementById("basePayment").value) || 0;
+
+
+    // VEHICLE PAYMENT
+    let vehiclePayment =
+        basePayment + kmPayment;
+
+
+    // FASTAG
+    let fastag =
+        Number(document.getElementById("fastag").value) || 0;
+
+
+    // OTHER CHARGES
+    let otherCharges =
+        Number(document.getElementById("otherCharges").value) || 0;
+
+
+    // GRAND TOTAL
+    let grandTotal =
+        vehiclePayment + fastag + otherCharges;
+
+
+    // DISPLAY
+    document.getElementById("displayVehicle").textContent =
+        vehiclePayment.toFixed(2);
+
+    document.getElementById("displayFastag").textContent =
+        fastag.toFixed(2);
+
+    document.getElementById("displayOther").textContent =
+        otherCharges.toFixed(2);
+
+    document.getElementById("grandTotal").textContent =
+        grandTotal.toFixed(2);
+}
+
+
+// Auto calculate when KM changes
+document.getElementById("startKm")
+    .addEventListener("input", calculateTotal);
+
+document.getElementById("endKm")
+    .addEventListener("input", calculateTotal);
+
+document.getElementById("rateKm")
+    .addEventListener("input", calculateTotal);
+
+document.getElementById("basePayment")
+    .addEventListener("input", calculateTotal);
+
+document.getElementById("fastag")
+    .addEventListener("input", calculateTotal);
+
+document.getElementById("otherCharges")
+    .addEventListener("input", calculateTotal);
+
+
+// Submit
+document.getElementById("travelForm")
+    .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        calculateTotal();
+
+        alert("RVM TRAVELS\nTrip details submitted successfully!");
+
+    });
+
+</script>
+
+</body>
+</html>
